@@ -4,7 +4,7 @@ from flask import Flask, render_template_string, request, redirect, url_for, ses
 app = Flask(__name__)
 app.secret_key = 'clave_secreta_super_segura'
 
-# --- TUS VERSOS Y LA FRASE FINAL ---
+# --- TUS NUEVOS VERSOS ---
 versos = [
     "¿Quién te va a querer tanto, tanto como yo",
     "¿Y quién me va a querer tanto como tú?",
@@ -12,7 +12,7 @@ versos = [
     "Imagino tu pelo suelto.",
     "Te recuerdo sobre mi cuerpo.",
     "Te extraño..",
-    "Mi Flaco..<‘3,
+    "Mi Flaco..<‘3"
 ]
 
 HTML_TEMPLATE = """
@@ -118,7 +118,7 @@ HTML_TEMPLATE = """
 
         {% if es_ultimo %}
         <form action="{{ url_for('cerrar') }}" method="POST">
-            <button type="submit" class="btn" onclick="window.close();">cerrar ❤️</button>
+            <button type="submit" class="btn" onclick="window.close();">cerrar 💘</button>
         </form>
         {% endif %}
     </div>

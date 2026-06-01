@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 # --- TUS VERSOS ---
 versos = [
-    "¿Quién te va a querer tanto, tanto como yo",
-    "¿Y quién me va a querer tanto como tú?",
+    "¿Quién te va a querer tanto, tanto como yo?",
+    "¿Quién me va a querer tanto como tú?",
     "¿Y quién me va a aguntar así, con toda tu quietud?",
     "Imagino tu pelo suelto.",
     "Te recuerdo sobre mi cuerpo.",

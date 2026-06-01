@@ -6,13 +6,13 @@ app.secret_key = 'clave_secreta_super_segura'
 
 # --- TUS NUEVOS VERSOS ---
 versos = [
-    "¿Quién te va a querer tanto, tanto como yo",
-    "¿Y quién me va a querer tanto, tanto como tú?",
-    "¿Y quién me va a aguntar así, con toda tu quietud?",
-    "Imagino tu pelo suelto.",
-    "Te recuerdo sobre mi cuerpo.",
-    "Te extraño..",
-    "Mi Flaco..",
+"¿Quién te va a querer tanto, tanto como yo",
+"¿Y quién me va a querer tanto, tanto como tú?",
+"¿Y quién me va a aguntar así, con toda tu quietud?",
+"Imagino tu pelo suelto.",
+"Te recuerdo sobre mi cuerpo.",
+"Te extraño..",
+"Mi Flaco..",
 ]
 
 HTML_TEMPLATE = """

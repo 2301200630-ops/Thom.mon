@@ -12,7 +12,7 @@ versos = [
     "Imagino tu pelo suelto.",
     "Te recuerdo sobre mi cuerpo.",
     "Te extraño..",
-    "Mi Flaco.."
+    "Mi Flaco..",
 ]
 
 HTML_TEMPLATE = """

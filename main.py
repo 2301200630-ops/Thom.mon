@@ -7,7 +7,7 @@ app.secret_key = 'clave_secreta_super_segura'
 # --- TUS NUEVOS VERSOS ---
 versos = [
     "¿Quién te va a querer tanto, tanto como yo",
-    "¿Y quién me va a querer tanto como tú?",
+    "¿Y quién me va a querer tanto, tanto como tú?",
     "¿Y quién me va a aguntar así, con toda tu quietud?",
     "Imagino tu pelo suelto.",
     "Te recuerdo sobre mi cuerpo.",
@@ -100,7 +100,7 @@ HTML_TEMPLATE = """
 <body>
     <div class="card">
         <div class="ribbon">🎀</div>
-        <div class="title">✨ Mis Ojos No Podían Ver - Charles Ans ✨</div>
+        <div class="title">✨ Flaco - Mon Laferte ✨</div>
         <div class="verse-container">
             <p class="verse">{{ verso }}</p>
             {% if es_ultimo %}

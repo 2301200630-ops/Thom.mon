@@ -1,8 +1,8 @@
 import os
-from flask import Flask, render_template_string, request, redirect, url_for, session
+from flask import Flask, render_template_string, request, redirect, url_for
 
 app = Flask(__name__)
-app.secret_key = 'clave_secreta_super_segura'
+# Ya no necesitamos cookies ni session, así que quitamos la clave secreta inestable
 
 # --- TUS VERSOS ---
 versos = [
@@ -111,14 +111,15 @@ HTML_TEMPLATE = """
         </div>
         
         {% if not es_ultimo %}
-        <form action="{{ url_for('siguiente') }}" method="POST">
+        <form action="{{ url_for('index') }}" method="GET">
+            <input type="hidden" name="p" value="{{ siguiente_id }}">
             <button type="submit" class="btn">Siguiente ✨</button>
         </form>
         {% endif %}
 
         {% if es_ultimo %}
         <form action="{{ url_for('cerrar') }}" method="POST">
-            <button type="submit" class="btn" onclick="window.close();">cerrar 💘</button>
+            <button type="submit" class="btn" onclick="window.close();">cerrar 💖</button>
         </form>
         {% endif %}
     </div>
@@ -128,33 +129,32 @@ HTML_TEMPLATE = """
 
 @app.route('/')
 def index():
-    if 'current_index' not in session:
-        session['current_index'] = 0
-    
-    if session['current_index'] >= len(versos):
-        session['current_index'] = 0
+    # Lee el número de página directamente desde el enlace
+    try:
+        current_index = int(request.args.get('p', 0))
+    except ValueError:
+        current_index = 0
         
-    verso_actual = versos[session['current_index']]
-    es_ultimo = (session['current_index'] == len(versos) - 1)
+    if current_index >= len(versos) or current_index < 0:
+        current_index = 0
+        
+    verso_actual = versos[current_index]
+    es_ultimo = (current_index == len(versos) - 1)
+    siguiente_id = current_index + 1
     
-    return render_template_string(HTML_TEMPLATE, verso=verso_actual, es_ultimo=es_ultimo)
-
-@app.route('/siguiente', methods=['POST'])
-def siguiente():
-    if 'current_index' not in session:
-        session['current_index'] = 0
-    else:
-        if session['current_index'] < len(versos) - 1:
-            session['current_index'] += 1
-    return redirect(url_for('index'))
+    return render_template_string(
+        HTML_TEMPLATE, 
+        verso=verso_actual, 
+        es_ultimo=es_ultimo, 
+        siguiente_id=siguiente_id
+    )
 
 @app.route('/cerrar', methods=['POST'])
 def cerrar():
-    session.clear()
     return """
     <script>
         window.close();
-        document.write('<h2 style="color: #ff4d6d; text-align: center; font-family: sans-serif; margin-top: 50px;">¡Gracias por leer! Ya puedes cerrar esta pestañita. 💕</h2>');
+        document.write('<h2 style="color: #ff4d6d; text-align: center; font-family: sans-serif; margin-top: 50px;">¡Gracias por leer! Ya puedes cerrar esta pestañita, Te Amo Mi Negro. 💕</h2>');
     </script>
     """
 

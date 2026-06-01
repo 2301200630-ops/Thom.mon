@@ -4,7 +4,7 @@ from flask import Flask, render_template_string, request, redirect, url_for, ses
 app = Flask(__name__)
 app.secret_key = 'clave_secreta_super_segura'
 
-# --- TUS VERSOS Y LA FRASE FINAL ---
+# --- TUS VERSOS ---
 versos = [
     "¿Quién te va a querer tanto, tanto como yo",
     "¿Y quién me va a querer tanto como tú?",
@@ -12,7 +12,7 @@ versos = [
     "Imagino tu pelo suelto.",
     "Te recuerdo sobre mi cuerpo.",
     "Te extraño..",
-    "Mi Flaco.."
+    "Mi Flaco..<‘3"
 ]
 
 HTML_TEMPLATE = """
@@ -32,7 +32,6 @@ HTML_TEMPLATE = """
             height: 100vh;
             margin: 0;
         }
-        /* Diseño de la tarjeta exterior de la foto */
         .card {
             background-color: #fff5f7;
             border: 2px solid #ffb3c6;
@@ -54,7 +53,6 @@ HTML_TEMPLATE = """
             font-weight: bold;
             margin-bottom: 25px;
         }
-        /* Cuadro de diálogo interno con línea punteada */
         .verse-container {
             border: 1px dashed #ffb3c6;
             border-radius: 12px;
@@ -80,7 +78,6 @@ HTML_TEMPLATE = """
             max-width: 150px;
             height: auto;
         }
-        /* Botón ovalado estilo la imagen de referencia */
         .btn {
             background-color: #ff4d6d;
             color: white;
@@ -113,14 +110,12 @@ HTML_TEMPLATE = """
             {% endif %}
         </div>
         
-        <!-- MIENTRAS NO SEA EL FINAL, SE MUESTRA EL BOTÓN SIGUIENTE -->
         {% if not es_ultimo %}
         <form action="{{ url_for('siguiente') }}" method="POST">
             <button type="submit" class="btn">Siguiente ✨</button>
         </form>
         {% endif %}
 
-        <!-- EL BOTÓN CERRAR SE MUESTRA ÚNICAMENTE EN EL ÚLTIMO CUADRO -->
         {% if es_ultimo %}
         <form action="{{ url_for('cerrar') }}" method="POST">
             <button type="submit" class="btn" onclick="window.close();">cerrar 💘</button>
@@ -146,12 +141,11 @@ def index():
 
 @app.route('/siguiente', methods=['POST'])
 def siguiente():
-    if 'current_index' in session:
-        # Solo avanza si no ha llegado al último verso por seguridad
+    if 'current_index' not in session:
+        session['current_index'] = 0
+    else:
         if session['current_index'] < len(versos) - 1:
             session['current_index'] += 1
-    else:
-        session['current_index'] = 0
     return redirect(url_for('index'))
 
 @app.route('/cerrar', methods=['POST'])

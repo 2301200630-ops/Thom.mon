@@ -32,7 +32,6 @@ HTML_TEMPLATE = """
             height: 100vh;
             margin: 0;
         }
-        /* Diseño de la tarjeta exterior de la foto */
         .card {
             background-color: #fff5f7;
             border: 2px solid #ffb3c6;
@@ -54,7 +53,6 @@ HTML_TEMPLATE = """
             font-weight: bold;
             margin-bottom: 25px;
         }
-        /* Cuadro de diálogo interno con línea punteada */
         .verse-container {
             border: 1px dashed #ffb3c6;
             border-radius: 12px;
@@ -80,7 +78,6 @@ HTML_TEMPLATE = """
             max-width: 150px;
             height: auto;
         }
-        /* Botón ovalado estilo la imagen de referencia */
         .btn {
             background-color: #ff4d6d;
             color: white;
@@ -103,7 +100,7 @@ HTML_TEMPLATE = """
 <body>
     <div class="card">
         <div class="ribbon">🎀</div>
-        <div class="title">✨ Flaco - Mon Laferte ✨</div>
+        <div class="title">✨ Mis Ojos No Podían Ver - Charles Ans ✨</div>
         <div class="verse-container">
             <p class="verse">{{ verso }}</p>
             {% if es_ultimo %}
@@ -113,17 +110,15 @@ HTML_TEMPLATE = """
             {% endif %}
         </div>
         
-        <!-- MIENTRAS NO SEA EL FINAL, SE MUESTRA EL BOTÓN SIGUIENTE -->
         {% if not es_ultimo %}
         <form action="{{ url_for('siguiente') }}" method="POST">
             <button type="submit" class="btn">Siguiente ✨</button>
         </form>
         {% endif %}
 
-        <!-- EL BOTÓN CERRAR SE MUESTRA ÚNICAMENTE EN EL ÚLTIMO CUADRO -->
         {% if es_ultimo %}
         <form action="{{ url_for('cerrar') }}" method="POST">
-            <button type="submit" class="btn" onclick="window.close();">cerrar 💘</button>
+            <button type="submit" class="btn" onclick="window.close();">cerrar ❤️</button>
         </form>
         {% endif %}
     </div>
@@ -147,7 +142,6 @@ def index():
 @app.route('/siguiente', methods=['POST'])
 def siguiente():
     if 'current_index' in session:
-        # Solo avanza si no ha llegado al último verso por seguridad
         if session['current_index'] < len(versos) - 1:
             session['current_index'] += 1
     else:

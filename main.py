@@ -6,13 +6,13 @@ app = Flask(__name__)
 
 # --- TUS VERSOS ---
 versos = [
-    "¿Quién te va a querer tanto, tanto como yo?",
-    "¿Quién me va a querer tanto como tú?",
-    "¿Y quién me va a aguntar así, con toda tu quietud?",
-    "Imagino tu pelo suelto.",
-    "Te recuerdo sobre mi cuerpo.",
-    "Te extraño..",
-    "Mi Flaco..<‘3"
+    "¿Cómo te va Mi Amor?, ¿Cómo te va?",
+    "Era en silencio la pregunta entre tú y yo.",
+    "¿Eres felíz, Mi Bien? sin engañar.",
+    "Porque a mi puerta el amor nunca volvió.",
+    "Porque el tiempo ha sido aliado, madurando este querer.",
+    "No debimos separarnos.",
+    "Fue un error, ahora lo sé.."
 ]
 
 HTML_TEMPLATE = """
@@ -100,7 +100,7 @@ HTML_TEMPLATE = """
 <body>
     <div class="card">
         <div class="ribbon">🎀</div>
-        <div class="title">✨ Flaco - Mon Laferte ✨</div>
+        <div class="title">✨ Cómo Te Va Mi Amor - Pandora ✨</div>
         <div class="verse-container">
             <p class="verse">{{ verso }}</p>
             {% if es_ultimo %}
